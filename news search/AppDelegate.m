@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UIStoryboard *myStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController *homeVC = (ViewController *)[myStoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    
+    UINavigationController *homeNavigations = (UINavigationController *)[myStoryboard instantiateViewControllerWithIdentifier:@"HomeNavigation"];
+    homeNavigations.viewControllers = @[homeVC];
+    
+    [UIView transitionWithView:self.window duration:0.25 options:(UIViewAnimationOptionTransitionFlipFromLeft | UIViewAnimationOptionAllowAnimatedContent) animations:^{
+        [self.window setRootViewController:homeNavigations];
+    } completion:^(BOOL finished){
+        
+        
+        
+    }];
     return YES;
 }
 
